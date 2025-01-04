@@ -157,7 +157,7 @@ for server in "${remote_servers[@]}"; do
     # raidens/fab-dev   10-a17e1139431674dab3f77d778a8ed979cfdbe243   c03f3d079b60   6 minutes ago       845MB
     images=()
     while IFS=$'\n' read -r line; do
-    images+=("$line")
+    images+=("\$line")
     done < <(docker images | grep $docker_image_name)
 
     # 遍历镜像列表
