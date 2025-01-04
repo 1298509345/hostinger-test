@@ -156,7 +156,7 @@ for server in "${remote_servers[@]}"; do
     # REPOSITORY        TAG                                           IMAGE ID       CREATED             SIZE
     # raidens/fab-dev   10-a17e1139431674dab3f77d778a8ed979cfdbe243   c03f3d079b60   6 minutes ago       845MB
     images=()
-    while read -r line; do
+    while IFS= read -r line; do
         images+=("\$line")
     done < <(docker images | grep $docker_image_name);
 
@@ -172,3 +172,22 @@ for server in "${remote_servers[@]}"; do
     done
 EOF
 done
+
+
+mage_array=()
+while read -r line; do
+            image_array+=("$line")
+    done < <(docker images | grep 'fab-dev');
+
+
+    for i in "${image_array[@]}"; do
+                echo "镜像:$i"
+                    t=`echo "$i" | awk '{print $2}'`
+                        echo "镜像tag: $t"
+                if [ "$t"!="11-4da06f15151fd024461acc5cb4f6c82fbf553352f" ]; then
+
+                                          id=`echo "$i" | awk '{print $3}'`
+                                                echo "镜像id: $id"
+                                                      docker rmi $id
+                                                          fi
+                                                            done
