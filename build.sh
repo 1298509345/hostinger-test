@@ -1,8 +1,7 @@
 #!/bin/bash
-: <<'EOF'
-Jenkins 构建环境变量
+: '
+Jenkins构建 环境变量
 The following variables are available to shell and batch build steps:
-
 BRANCH_NAME
 For a multibranch project, this will be set to the name of the branch being built, for example in case you wish to deploy to production from master but not from feature branches; if corresponding to some kind of change request, the name is generally arbitrary (refer to CHANGE_ID and CHANGE_TARGET).
 BRANCH_IS_PRIMARY
@@ -97,7 +96,7 @@ GIT_COMMITTER_EMAIL
 The configured Git committer email, if any, that will be used for FUTURE commits from the current workspace. It is read from the Global Config user.email Value field of the Jenkins Configure System page.
 GIT_AUTHOR_EMAIL
 The configured Git author email, if any, that will be used for FUTURE commits from the current workspace. It is read from the Global Config user.email Value field of the Jenkins Configure System page.
-EOF
+'
 
 
 # 构建 go项目
