@@ -1,7 +1,7 @@
 FROM golang:1.23.4
 
-COPY app .
+COPY fab-dev .
 COPY conf/sim.toml ./conf/
 
-ENTRYPOINT ["./app"]
+ENTRYPOINT ["./fab-dev"]
 
