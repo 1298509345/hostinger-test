@@ -172,22 +172,3 @@ for server in "${remote_servers[@]}"; do
     done
 EOF
 done
-
-
-mage_array=()
-while read -r line; do
-            image_array+=("$line")
-    done < <(docker images | grep 'fab-dev');
-
-
-    for i in "${image_array[@]}"; do
-                echo "镜像:$i"
-                    t=`echo "$i" | awk '{print $2}'`
-                        echo "镜像tag: $t"
-                if [ "$t"!="11-4da06f15151fd024461acc5cb4f6c82fbf553352f" ]; then
-
-                                          id=`echo "$i" | awk '{print $3}'`
-                                                echo "镜像id: $id"
-                                                      docker rmi $id
-                                                          fi
-                                                            done
