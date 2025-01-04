@@ -110,7 +110,7 @@ app_name='fab-app'  # 应用名称
 docker_username='raidens'  # DockerHub 账号用户名
 docker_pwd='syg199908'
 docker_image_name='fab-dev'  # 镜像名称
-docker_image_tag="${BUILD_NUMBER}-${GIT_COMMIT}"  # 镜像标签，使用构建号来唯一标识
+docker_image_tag="${BUILD_NUMBER}-${GIT_COMMIT}-${TAG_TIMESTAMP}"  # 镜像标签，使用构建号来唯一标识
 
 # 构建Docker镜像
 docker build -t $docker_username/$docker_image_name:$docker_image_tag .
