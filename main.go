@@ -17,5 +17,5 @@ func serveHTTP(_ context.Context) {
 		_, err := w.Write([]byte("ok"))
 		log.Printf("health check, err:%v", err)
 	})
-	http.ListenAndServe(":9080", nil)
+	http.ListenAndServe(":9002", nil)
 }
