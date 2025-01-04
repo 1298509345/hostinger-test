@@ -1,3 +1,4 @@
+#!/bin/bash
 : <<'EOF'
 Jenkins 构建环境变量
 The following variables are available to shell and batch build steps:
@@ -98,7 +99,6 @@ GIT_AUTHOR_EMAIL
 The configured Git author email, if any, that will be used for FUTURE commits from the current workspace. It is read from the Global Config user.email Value field of the Jenkins Configure System page.
 EOF
 
-#!/bin/bash
 
 # 构建 go项目
 go env -w GO111MODULE=on
