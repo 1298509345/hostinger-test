@@ -155,10 +155,13 @@ for server in "${remote_servers[@]}"; do
     images=\`docker images | grep $docker_image_name\`
     for i in \$images
     do
+    # docker images 格式
+    # REPOSITORY        TAG                                           IMAGE ID       CREATED             SIZE
+    # raidens/fab-dev   10-a17e1139431674dab3f77d778a8ed979cfdbe243   c03f3d079b60   6 minutes ago       845MB
         echo \$i
-        t=\`echo "\$i" | awk '{print \$2}'\`
-        if [ "\$t"!= "$docker_image_tag" ]; then
-            id=\`echo "\$i" | awk '{print \$3}'\`
+        t=\`echo "\$i" | awk '{print \$2}'\` # TAG
+        if [ "\$t"!="$docker_image_tag" ]; then
+            id=\`echo "\$i" | awk '{print \$3}'\` # IMAGE ID
             docker rmi $id
         fi
     done
