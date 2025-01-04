@@ -102,7 +102,7 @@ EOF
 
 # 构建 go项目
 go env -w GO111MODULE=on
-go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOPROXY=https://goproxy.io,direct
 go mod tidy
 go build -o fab-dev
 
