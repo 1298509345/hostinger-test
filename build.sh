@@ -152,16 +152,16 @@ for server in "${remote_servers[@]}"; do
     docker run --rm --name $docker_image_name -p 9002:9002 -d $docker_username/$docker_image_name:$docker_image_tag
 
     # 删除多余镜像
-    images=()
     # docker images 格式
     # REPOSITORY        TAG                                           IMAGE ID       CREATED             SIZE
     # raidens/fab-dev   10-a17e1139431674dab3f77d778a8ed979cfdbe243   c03f3d079b60   6 minutes ago       845MB
+    images=()
     while read -r line; do
         images+=("$line")
     done < <(docker images | grep $docker_image_name);
 
     # 遍历镜像列表
-    for i in \${image_array[@]};
+    for i in \${images[@]};
     do
         echo "镜像:\$i"
         t=\`echo "\$i" | awk '{print \$2}'\` # 取TAG
