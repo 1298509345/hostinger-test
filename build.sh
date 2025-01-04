@@ -124,7 +124,7 @@ docker push $docker_username/$docker_image_name:$docker_image_tag
 
 
 # 调用远程服务器，拉取镜像，部署
-remote_servers=('root@10.128.0.3')  # 远程主机
+remote_servers=("root@10.128.0.3")  # 远程主机
 
 for server in "${remote_servers[@]}"; do
     echo "Processing server: $server"
