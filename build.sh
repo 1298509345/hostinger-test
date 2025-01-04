@@ -164,7 +164,7 @@ for server in "${remote_servers[@]}"; do
     for img in "\${images[@]}"; do
       echo "镜像: \$img"
       tag=\$(echo "\$img" | awk '{print \$2}')
-      if [ "\$tag"!= "\$docker_image_tag" ]; then
+      if [ "\$tag"!="\$docker_image_tag" ]; then
         img_id=\$(echo "\$img" | awk '{print \$3}')
         docker rmi \$img_id
       fi
