@@ -129,23 +129,23 @@ for server in "${remote_servers[@]}"; do
     echo "Processing server: $server"
     ssh $server << EOF
     # 从Docker镜像仓库中拉取镜像
-    docker login --username=$docker_username --password=$docker_pwd
+    docker login --username=$docker_username --password=$docker_pwd # 当前脚本的变量，无需转义$
     docker pull $docker_username/$docker_image_name:$docker_image_tag
 
     # 停止该镜像正在运行的Docker容器
-    line=\`docker ps | grep $docker_image_name\`
+    line=\`docker ps | grep $docker_image_name\` # 远程服务器的变量，需要转义
     if [ -n "\$line" ]; then
-        echo "存在正在运行的\$docker_image_name容器, 正在使其停止运行..."
+        echo "存在正在运行的$docker_image_name容器, 正在使其停止运行..."
         docker stop $docker_image_name
-        echo "\$docker_image_name容器, 已停止运行"
+        echo "$docker_image_name 容器, 已停止运行"
     fi
 
     # 删除该镜像的Docker容器
     line=\`docker ps -a | grep $docker_image_name\`
     if [ -n "\$line" ]; then
-        echo "存在\$docker_image_name容器, 对其进行删除..."
+        echo "存在$docker_image_name容器, 对其进行删除..."
         docker rm $docker_image_name
-        echo "\$docker_image_name容器, 已被删除"
+        echo "$docker_image_name容器, 已被删除"
     fi
 
     # 启动容器
@@ -157,7 +157,7 @@ for server in "${remote_servers[@]}"; do
     # raidens/fab-dev   10-a17e1139431674dab3f77d778a8ed979cfdbe243   c03f3d079b60   6 minutes ago       845MB
     images=()
     while read -r line; do
-        images+=("$line")
+        images+=("\$line")
     done < <(docker images | grep $docker_image_name);
 
     # 遍历镜像列表
@@ -167,7 +167,7 @@ for server in "${remote_servers[@]}"; do
         t=\`echo "\$i" | awk '{print \$2}'\` # 取TAG
         if [ "\$t"!="$docker_image_tag" ]; then
             id=\`echo "\$i" | awk '{print \$3}'\` # IMAGE ID
-            docker rmi $id
+            docker rmi \$id
         fi
     done
 EOF
