@@ -14,7 +14,7 @@ func main() {
 
 func serveHTTP(_ context.Context) {
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		_, err := w.Write([]byte("health ok"))
+		_, err := w.Write([]byte("health ok 2"))
 		log.Printf("health check, err:%v", err)
 	})
 	http.ListenAndServe(":9002", nil)
