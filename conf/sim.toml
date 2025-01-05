@@ -1,5 +1,6 @@
-[mysql]
+[port]
+http = 9002
 
-[redis]
-
-[message]
+[database]
+dsn = "root:123456@tcp(127.0.0.1)"
+max_idle = 5000 # 毫秒
