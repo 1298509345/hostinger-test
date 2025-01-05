@@ -106,7 +106,6 @@ go mod tidy
 go build -o fab-dev
 
 # 构建docker容器，上传到镜像仓库
-app_name='fab-app'  # 应用名称
 docker_username='raidens'  # DockerHub 账号用户名
 docker_pwd='syg199908'
 docker_image_name='fab-dev'  # 镜像名称
