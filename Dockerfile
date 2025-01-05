@@ -5,3 +5,4 @@ COPY conf/sim.toml ./conf/
 
 ENTRYPOINT ["./fab-dev"]
 
+ENV TZ=Asia/Shanghai
