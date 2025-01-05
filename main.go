@@ -14,6 +14,7 @@ func main() {
 	// 初始化全局配置
 	initGlobalConf()
 
+	originHTTPServer()
 	// 启动 goframe web框架
 	gfServer()
 	select {}

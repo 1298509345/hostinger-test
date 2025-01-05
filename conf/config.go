@@ -4,8 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/gogf/gf/v2/os/gcfg"
-	"github.com/gogf/gf/v2/os/glog"
-	"github.com/gogf/gf/v2/util/gconv"
 )
 
 var (
@@ -15,7 +13,6 @@ var (
 type C struct {
 	Port     Port
 	Database Database
-	Logger   GFServerLogger
 }
 
 func (c C) String() string {
