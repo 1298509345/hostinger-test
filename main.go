@@ -20,7 +20,7 @@ func main() {
 }
 
 func originHTTPServer() {
-	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/health-origin", func(w http.ResponseWriter, r *http.Request) {
 		_, err := w.Write([]byte("health ok 3"))
 		log.Printf("health check, err:%v", err)
 	})
