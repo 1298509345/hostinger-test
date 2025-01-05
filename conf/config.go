@@ -13,7 +13,6 @@ var (
 
 type C struct {
 	Port      Port
-	Database  Database
 	GFServer  GFServer
 	DefaultDB DefaultDB
 }
@@ -33,25 +32,6 @@ func (p *Port) init(ctx context.Context, cfgInstance *gcfg.Config) error {
 		return err
 	}
 	p.HTTPPort = httpPort.Int()
-	return nil
-}
-
-type Database struct {
-	Dsn     string
-	MaxIdle int
-}
-
-func (d *Database) init(ctx context.Context, cfgInstance *gcfg.Config) error {
-	dsn, err := cfgInstance.Get(ctx, "database.dsn")
-	if err != nil {
-		return err
-	}
-	d.Dsn = dsn.String()
-	maxIdle, err := cfgInstance.Get(ctx, "database.max_idle")
-	if err != nil {
-		return err
-	}
-	d.MaxIdle = maxIdle.Int()
 	return nil
 }
 
@@ -98,11 +78,6 @@ func Init(ctx context.Context, confPath string) error {
 
 	// http 配置
 	if err := GlobalC.Port.init(ctx, cfgInstance); err != nil {
-		return err
-	}
-
-	// 数据库配置
-	if err := GlobalC.Database.init(ctx, cfgInstance); err != nil {
 		return err
 	}
 
