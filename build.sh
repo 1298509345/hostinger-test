@@ -111,6 +111,7 @@ docker_username='raidens'  # DockerHub 账号用户名
 docker_pwd='syg199908'
 docker_image_name='fab-dev'  # 镜像名称
 docker_image_tag="${BUILD_NUMBER}-${GIT_COMMIT}-${TAG_TIMESTAMP}"  # 镜像标签，使用构建号来唯一标识
+container_port='9001'  # 容器端口
 
 # 构建Docker镜像
 docker build -t $docker_username/$docker_image_name:$docker_image_tag .
@@ -148,8 +149,8 @@ for server in "${remote_servers[@]}"; do
         echo "$docker_image_name容器, 已被删除"
     fi
 
-    # 启动容器
-    docker run --rm --name $docker_image_name -p 9002:9002 -d $docker_username/$docker_image_name:$docker_image_tag
+    # 启动容器，端口映射一致
+    docker run --rm --name $docker_image_name -p $container_port:$container_port -d $docker_username/$docker_image_name:$docker_image_tag
 
     # 删除多余镜像
     # docker images 格式
