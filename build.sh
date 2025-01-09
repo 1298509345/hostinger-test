@@ -149,7 +149,7 @@ for server in "${remote_servers[@]}"; do
     fi
 
     # 启动容器，端口映射一致
-    docker run --rm --name $docker_image_name -p $container_port:$container_port -d $docker_username/$docker_image_name:$docker_image_tag
+    docker run --rm --name $docker_image_name --network fab_network -p $container_port:$container_port -d $docker_username/$docker_image_name:$docker_image_tag
 
     # 删除多余镜像
     # docker images 格式
